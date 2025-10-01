@@ -30,7 +30,7 @@ if (!homePageEntry) {
     return notFound();
 }
 
-const homePageMeta = homePageEntry.meta.en as HomePageEntryMetaItem;
+const homePageMeta = homePageEntry.meta[lang] as HomePageEntryMetaItem;
 
 const foodItems = (await bcmsPrivate.entry.getAll('food-item')) as FoodItemEntry[];
 
@@ -49,6 +49,7 @@ const bcmsConfig = bcmsPublic.getConfig();
                 description={homePageMeta.description}
                 client:load
                 bcmsConfig={bcmsConfig}
+                lang={lang}
             />
             <HomeMenu
                 title={homePageMeta.menu_title}
@@ -56,6 +57,7 @@ const bcmsConfig = bcmsPublic.getConfig();
                 meals={homePageMeta.menu_meals}
                 client:load
                 bcmsConfig={bcmsConfig}
+                lang={lang}
             />
             <HomeSeasons
                 title={homePageMeta.seasons_title}
@@ -63,6 +65,7 @@ const bcmsConfig = bcmsPublic.getConfig();
                 seasons={homePageMeta.seasons}
                 client:load
                 bcmsConfig={bcmsConfig}
+                lang={lang}
             />
             <HomeAmbience
                 title={homePageMeta.ambience_title}

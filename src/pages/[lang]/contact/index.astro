@@ -1,11 +1,22 @@
 ---
+import { useTranslations } from '../../../utils/i18n';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as 'en' | 'es');
 import { BCMSImage } from "@thebcms/components-react";
-import type { ContactPageEntry, ContactPageEntryMetaItem } from "../../../bcms/types/ts";
-import ArchWithStar from "../../components/ArchWithStar";
-import ContentManager from "../../components/ContentManager";
-import Layout from "../../layouts/Layout.astro";
-import Btn from "../../components/Btn";
-import { bcmsPrivate } from '../../bcms-private';
+import type { ContactPageEntry, ContactPageEntryMetaItem } from "../../../../bcms/types/ts";
+import ArchWithStar from "../../../components/ArchWithStar";
+import ContentManager from "../../../components/ContentManager";
+import Layout from "../../../layouts/Layout.astro";
+import Btn from "../../../components/Btn";
+import { bcmsPrivate } from '../../../bcms-private';
 
 const contactPageEntry = (await bcmsPrivate.entry.getBySlug(
     'contact',
@@ -16,12 +27,12 @@ if (!contactPageEntry) {
     return notFound();
 }
 
-const contactPageMeta = contactPageEntry.meta.en as ContactPageEntryMetaItem;
+const contactPageMeta = contactPageEntry.meta[lang] as ContactPageEntryMetaItem;
 
 const bcmsConfig = bcmsPrivate.getConfig();
 ---
 
-<Layout title={`${contactPageMeta.seo?.title || contactPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${contactPageMeta.seo?.title || contactPageMeta.title} - Tastyyy`}>
     <div>
         <section class="pt-[108px] pb-10 overflow-hidden md:pb-20 lg:pt-[218px] lg:pb-[120px]">
             <div class="container max-w-[1198px]">
@@ -46,7 +57,7 @@ const bcmsConfig = bcmsPrivate.getConfig();
                         to="https://www.google.com/maps"
                         className="uppercase max-w-max mx-auto"
                     >
-                        <span>Open maps</span>
+                        <span>{t('btn.maps')}</span>
                     </Btn>
                 </div>
             </div>

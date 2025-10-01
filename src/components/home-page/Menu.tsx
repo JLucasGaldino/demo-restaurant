@@ -10,6 +10,7 @@ interface Props {
     description: PropRichTextDataParsed;
     meals: MealTypeEntry[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
 
 const HomeMenu: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const HomeMenu: React.FC<Props> = ({
     description,
     meals,
     bcmsConfig,
+    lang,
 }) => {
     return (
         <section>
@@ -37,22 +39,22 @@ const HomeMenu: React.FC<Props> = ({
             {meals.map((meal, index) => (
                 <a
                     key={index}
-                    href={`/menu?s=${meal.meta.en?.title.toLowerCase()}`}
+                    href={`/menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
                     className="flex relative"
                 >
-                    {meal.meta.en && (
+                    {meal.meta[lang] && (
                         <div className="container">
                             <div className="relative z-10 flex flex-col items-center text-center py-12 max-w-[765px] mx-auto lg:py-[150px]">
                                 <h3 className="text-sm leading-none font-Gloock text-white uppercase mb-3 lg:text-[32px] lg:leading-none lg:mb-[18px]">
-                                    {meal.meta.en.title}
+                                    {meal.meta[lang].title}
                                 </h3>
                                 <ContentManager
-                                    items={meal.meta.en?.description.nodes}
+                                    items={meal.meta[lang]?.description.nodes}
                                     className="text-xs leading-[1.3] tracking-[-0.41px] uppercase text-appGray-100 lg:text-lg lg:leading-[1.3]"
                                 />
                             </div>
                             <BCMSImage
-                                media={meal.meta.en?.cover_image}
+                                media={meal.meta[lang]?.cover_image}
                                 clientConfig={bcmsConfig}
                                 className="absolute top-0 left-0 w-full h-full object-cover"
                             />

@@ -1,9 +1,17 @@
 ---
-import type { FoodItemEntry, FoodItemEntryMetaItem, MealTypeEntry, MealTypeEntryMetaItem, MenuPageEntry, MenuPageEntryMetaItem } from "../../../bcms/types/ts";
-import MenuMeals from "../../components/menu-page/Meals";
-import Layout from "../../layouts/Layout.astro";
-import { bcmsPrivate } from '../../bcms-private';
-import { bcmsPublic } from '../../bcms-public';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+import type { FoodItemEntry, FoodItemEntryMetaItem, MealTypeEntry, MealTypeEntryMetaItem, MenuPageEntry, MenuPageEntryMetaItem } from "../../../../bcms/types/ts";
+import MenuMeals from "../../../components/menu-page/Meals";
+import Layout from "../../../layouts/Layout.astro";
+import { bcmsPrivate } from '../../../bcms-private';
+import { bcmsPublic } from '../../../bcms-public';
 
 const menuPageEntries = (await bcmsPrivate.entry.getBySlug(
     'menu',
@@ -26,7 +34,7 @@ const foodItems = (
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout title={`${menuPageMeta.seo?.title || menuPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${menuPageMeta.seo?.title || menuPageMeta.title} - Tastyyy`}>
     <div>
         <MenuMeals
             meta={menuPageMeta}

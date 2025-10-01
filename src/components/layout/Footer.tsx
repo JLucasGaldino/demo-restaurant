@@ -1,9 +1,15 @@
+import { useTranslations } from '../../utils/i18n';
 import React from 'react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+    lang: string;
+}
+
+const Footer: React.FC<FooterProps> = ({lang}) => {
+    const t = useTranslations(lang as 'en' | 'es');
     const nav = [
         {
-            title: 'Connect',
+            title: t('con.social'),
             items: [
                 {
                     label: 'Instagram',
@@ -20,40 +26,40 @@ const Footer: React.FC = () => {
             ],
         },
         {
-            title: 'Get in touch',
+            title: t('con.title'),
             items: [
                 {
-                    label: '(+1) 812 9232 823',
-                    href: 'tel:+18129231823',
+                    label: '(+1) 234 567 8900',
+                    href: 'tel:+12345678900',
                 },
                 {
-                    label: 'tastyyy@mail.com',
-                    href: 'mailto:tastyyy@mail.com',
+                    label: 'lucas@lucasgaldino.com',
+                    href: 'lucas@lucasgaldino.com',
                 },
             ],
         },
         {
-            title: 'Shop',
+            title: t('con.shop'),
             items: [
                 {
-                    label: 'Pickup',
+                    label: t('con.pickup'),
                     href: '#',
                 },
                 {
-                    label: 'Location',
+                    label: t('con.location'),
                     href: '#',
                 },
             ],
         },
         {
-            title: 'Legal',
+            title: t('con.legal'),
             items: [
                 {
-                    label: 'Terms & condition',
-                    href: '/legal',
+                    label: t('con.tnc'),
+                    href: '/terms',
                 },
                 {
-                    label: 'Privacy policy',
+                    label: t('con.pp'),
                     href: '/legal',
                 },
             ],
@@ -65,11 +71,15 @@ const Footer: React.FC = () => {
             <div className="container">
                 <div className="md:grid md:grid-cols-[auto,1fr]">
                     <p className="text-sm leading-[1.3] uppercase tracking-[-0.41px] text-appGray-500 text-center mb-8 md:text-base md:leading-[1.3] md:text-left">
-                        California 166166,
-                        <br />
-                        quai de Stalingrad
-                        <br />
-                        92130 Issy-Les-Moulineaux
+            Calle de la Mar, 42
+            <br />
+            03002 Alicante
+            <br />
+            Alicante, Comunidad Valenciana
+            <br />
+            España
+            <br />
+            +34 965 123 456
                     </p>
                     <nav className="grid grid-cols-[repeat(2,auto)] justify-between gap-x-12 gap-y-8 mx-auto mb-10 max-md:max-w-[225px] md:mb-20 lg:grid-cols-[repeat(4,auto)] lg:gap-20 xl:gap-[128px]">
                         {nav.map((col, index) => {

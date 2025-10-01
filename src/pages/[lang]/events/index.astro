@@ -1,11 +1,19 @@
 ---
-import type { EventsPageEntry, EventsPageEntryMetaItem } from "../../../bcms/types/ts";
-import ArchWithStar from "../../components/ArchWithStar";
-import ContentManager from "../../components/ContentManager";
-import { EventCard } from "../../components/events-page/EventCard";
-import Layout from "../../layouts/Layout.astro";
-import { bcmsPrivate } from '../../bcms-private';
-import { bcmsPublic } from '../../bcms-public';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+import type { EventsPageEntry, EventsPageEntryMetaItem } from "../../../../bcms/types/ts";
+import ArchWithStar from "../../../components/ArchWithStar";
+import ContentManager from "../../../components/ContentManager";
+import { EventCard } from "../../../components/events-page/EventCard";
+import Layout from "../../../layouts/Layout.astro";
+import { bcmsPrivate } from '../../../bcms-private';
+import { bcmsPublic } from '../../../bcms-public';
 
 const eventsPageEntry = (await bcmsPrivate.entry.getBySlug(
     'events',
@@ -21,7 +29,7 @@ const eventsPageMeta = eventsPageEntry.meta.en as EventsPageEntryMetaItem;
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout title={`${eventsPageMeta.seo?.title || eventsPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${eventsPageMeta.seo?.title || eventsPageMeta.title} - Tastyyy`}>
     <div>
         <section class="pt-[108px] pb-10 overflow-hidden md:pb-20 lg:pt-[218px] lg:pb-[120px]">
             <div class="container max-w-[1198px]">

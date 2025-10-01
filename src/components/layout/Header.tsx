@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React, { useEffect, useRef, useState } from 'react';
 import MenuIcon from '../../assets/icons/menu.svg?raw';
 import XIcon from '../../assets/icons/x.svg?raw';
@@ -10,24 +11,32 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({lang}) => {
+    const t = useTranslations(lang as 'en' | 'es');
+    const otherLang = lang === 'en' ? 'es' : 'en';
+    const [newPath, setNewPath] = useState(`/${otherLang}/`);
+    useEffect(() => {
+        const currentPath = window.location.pathname; // now this runs on the client
+        const updatedPath = currentPath.replace(/^\/(en|es)/, `/${otherLang}`);
+        setNewPath(updatedPath);
+    }, [otherLang]);
     const navItemsDOM = useRef<HTMLDivElement | null>(null);
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
     const nav = [
         {
-            label: 'Home',
+            label: t('nav.home'),
             href: `/${lang}/`,
         },
         {
-            label: 'Menu',
+            label: t('nav.menu'),
             href: `/${lang}/menu`,
         },
         {
-            label: 'Events',
+            label: t('nav.events'),
             href: `/${lang}/events`,
         },
         {
-            label: 'Reservation',
+            label: t('nav.reservation'),
             href: `/${lang}/reservation`,
         },
     ];
@@ -93,13 +102,17 @@ const Header: React.FC<HeaderProps> = ({lang}) => {
                                 href={`/${lang}/`}
                                 className="text-lg leading-none tracking-[-0.41px] uppercase md:hidden"
                             >
-                                Contact us
+                              {t('nav.contact')}
                             </a>
                         </li>
                     </ul>
-                    <div className="flex justify-end max-md:hidden md:flex-1">
+
+                    <div className="flex justify-end max-md:hidden md:flex-1 gap-4">
+                        <Btn to={newPath} className="uppercase">
+                            <span>{otherLang === 'en' ? 'English' : 'Español'}</span>
+                        </Btn>
                         <Btn to={`/${lang}/contact`} className="uppercase">
-                            <span>Contact us</span>
+                            <span>{t('btn.contact')}</span>
                         </Btn>
                     </div>
                     <button

@@ -1,16 +1,24 @@
 ---
-import type { LegalPageEntry } from '../../../bcms/types/ts';
-import ArchWithStar from "../../components/ArchWithStar";
-import ContentManager from "../../components/ContentManager";
-import Layout from "../../layouts/Layout.astro";
-import { bcmsPrivate } from '../../bcms-private';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+import type { LegalPageEntry } from '../../../../bcms/types/ts';
+import ArchWithStar from "../../../components/ArchWithStar";
+import ContentManager from "../../../components/ContentManager";
+import Layout from "../../../layouts/Layout.astro";
+import { bcmsPrivate } from '../../../bcms-private';
 
 const legalEntries = (await bcmsPrivate.entry.getAll(
     'legal-page',
 )) as LegalPageEntry[];
 ---
 
-<Layout title={`Legal - Tastyyy`}>
+<Layout lang={lang} title={`Legal - Tastyyy`}>
     <div>
         <section class="pt-[108px] pb-10 overflow-hidden md:pb-20 lg:pt-[218px] lg:pb-[120px]">
             <div class="container max-w-[1198px]">

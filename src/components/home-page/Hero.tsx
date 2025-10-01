@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React from 'react';
 import StarIcon from '../../assets/icons/star.svg?raw';
 import { BCMSImage } from '@thebcms/components-react';
@@ -28,7 +29,9 @@ const HomeHero: React.FC<Props> = ({
     map,
     description,
     bcmsConfig,
+    lang,
 }) => {
+    const t = useTranslations(lang as 'en' | 'es');
     return (
         <section className="pt-10 md:pt-20 lg:pt-[200px]">
             <div className="container">
@@ -80,7 +83,7 @@ const HomeHero: React.FC<Props> = ({
                                     }}
                                     className="w-2 h-2 lg:w-12 lg:h-12"
                                 />
-                                <h1 className="text-xl leading-none font-Gloock mx-2.5 lg:text-[80px] lg:leading-none lg:mx-12 2xl:text-[112px] 2xl:leading-none">
+                                <h1 className="text-lg leading-none font-Gloock mx-2.5 lg:text-[48px] lg:leading-none lg:mx-12 2xl:text-[64px] 2xl:leading-none">
                                     {title}
                                 </h1>
                                 <div
@@ -146,7 +149,7 @@ const HomeHero: React.FC<Props> = ({
                 </div>
                 <Btn to="/about-us" className="uppercase max-w-max mx-auto">
                     <span>
-                        Learn more <span className="sr-only">about us</span>
+                        {t('hom.learn')} <span className="sr-only">about us</span>
                     </span>
                 </Btn>
                 <HomeDivider />

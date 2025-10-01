@@ -11,6 +11,7 @@ interface Props {
     description: PropRichTextDataParsed;
     seasons: SeasonEntry[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
 
 const HomeSeasons: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const HomeSeasons: React.FC<Props> = ({
     description,
     seasons,
     bcmsConfig,
+    lang,
 }) => {
     return (
         <section>
@@ -39,18 +41,18 @@ const HomeSeasons: React.FC<Props> = ({
                 {seasons.map((meal, index) => (
                     <a
                         key={index}
-                        href={`/seasonal-menu?s=${meal.meta.en?.title.toLowerCase()}`}
+                        href={`/seasonal-menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
                         className="flex relative"
                     >
-                        {meal.meta.en && (
+                        {meal.meta[lang] && (
                             <div className="container">
                                 <div className="relative z-10 flex flex-col items-center justify-center text-center py-12 min-h-[200px] lg:aspect-[1.73]">
                                     <h3 className="text-xl leading-none font-Gloock text-white uppercase lg:text-[32px] lg:leading-none">
-                                        {meal.meta.en.title}
+                                        {meal.meta[lang].title}
                                     </h3>
                                 </div>
                                 <BCMSImage
-                                    media={meal.meta.en?.cover_image}
+                                    media={meal.meta[lang]?.cover_image}
                                     clientConfig={bcmsConfig}
                                     className="absolute top-0 left-0 w-full h-full object-cover"
                                 />
