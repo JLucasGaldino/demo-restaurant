@@ -1,4 +1,10 @@
 ---
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import '../styles/fonts.css';
@@ -34,7 +40,7 @@ const ogImageUrl = '/thumbnail.jpg';
     </head>
     <body class="font-Helvetica overflow-x-hidden bg-appBody text-appText">
         <div class="overflow-hidden flex flex-col min-h-screen">
-            <Header client:load />
+            <Header lang={lang} client:load />
             <main class="flex flex-col flex-1"><slot /></main>
             <Footer />
         </div>

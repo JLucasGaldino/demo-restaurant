@@ -1,0 +1,31 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+import type { ReservationPageEntry, ReservationPageEntryMetaItem } from "../../../../bcms/types/ts";
+import ReservationForm from "../../../components/reservation-page/Form";
+import Layout from "../../../layouts/Layout.astro";
+import { bcmsPrivate } from '../../../bcms-private';
+
+const reservationPage = (await bcmsPrivate.entry.getBySlug(
+    'reservation',
+    'reservation-page',
+)) as ReservationPageEntry;
+
+if (!reservationPage) {
+    return notFound();
+}
+
+const reservationPageMeta = reservationPage.meta.en as ReservationPageEntryMetaItem;
+---
+
+<Layout lang={lang} title={`${reservationPageMeta.seo?.title || reservationPageMeta.title} - Tastyyy`}>
+    <div>
+        <ReservationForm title={reservationPageMeta.title} client:load />
+    </div>
+</Layout>

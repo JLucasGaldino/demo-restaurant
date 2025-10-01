@@ -5,26 +5,30 @@ import Logo from '../../assets/icons/logo.svg?raw';
 import classNames from 'classnames';
 import Btn from '../Btn';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    lang: string;
+}
+
+const Header: React.FC<HeaderProps> = ({lang}) => {
     const navItemsDOM = useRef<HTMLDivElement | null>(null);
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
     const nav = [
         {
             label: 'Home',
-            href: '/',
+            href: `/${lang}/`,
         },
         {
             label: 'Menu',
-            href: '/menu',
+            href: `/${lang}/menu`,
         },
         {
             label: 'Events',
-            href: '/events',
+            href: `/${lang}/events`,
         },
         {
             label: 'Reservation',
-            href: '/reservation',
+            href: `/${lang}/reservation`,
         },
     ];
 
@@ -53,7 +57,7 @@ const Header: React.FC = () => {
             <div className="relative z-10 container">
                 <nav className="relative flex items-center justify-between pt-6 lg:pt-8">
                     <a
-                        href="/"
+                        href={`/${lang}/`}
                         className="flex md:flex-1"
                         aria-label="Home page"
                     >
@@ -86,7 +90,7 @@ const Header: React.FC = () => {
                         ))}
                         <li>
                             <a
-                                href="/"
+                                href={`/${lang}/`}
                                 className="text-lg leading-none tracking-[-0.41px] uppercase md:hidden"
                             >
                                 Contact us
@@ -94,7 +98,7 @@ const Header: React.FC = () => {
                         </li>
                     </ul>
                     <div className="flex justify-end max-md:hidden md:flex-1">
-                        <Btn to="/contact" className="uppercase">
+                        <Btn to={`/${lang}/contact`} className="uppercase">
                             <span>Contact us</span>
                         </Btn>
                     </div>
