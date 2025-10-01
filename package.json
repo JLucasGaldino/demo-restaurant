@@ -3,7 +3,7 @@
     "type": "module",
     "version": "0.0.1",
     "scripts": {
-        "dev": "bcms pull types lng ts && astro dev",
+        "dev": "astro dev",
         "start": "bcms pull types lng ts && astro dev",
         "build": "bcms pull types lng ts && astro check && astro build",
         "preview": "bcms pull types lng ts && astro preview",
