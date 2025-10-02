@@ -97,7 +97,7 @@ const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig }) => {
                                     className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-100 max-w-[480px] mb-4 lg:text-base lg:leading-[1.3] lg:mb-6"
                                 />
                                 <div className="px-6 py-[13px] flex max-w-max bg-[#9BA58F] rounded-[32px] text-sm leading-none text-white tracking-[-0.41px] lg:px-[18px] lg:py-3 lg:text-sm lg:leading-none">
-                                    ${item.price}
+                                    €{item.price}
                                 </div>
                             </div>
                             <BCMSImage

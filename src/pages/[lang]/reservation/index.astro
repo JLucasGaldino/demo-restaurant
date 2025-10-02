@@ -21,11 +21,11 @@ if (!reservationPage) {
     return notFound();
 }
 
-const reservationPageMeta = reservationPage.meta.en as ReservationPageEntryMetaItem;
+const reservationPageMeta = reservationPage.meta[lang] as ReservationPageEntryMetaItem;
 ---
 
-<Layout lang={lang} title={`${reservationPageMeta.seo?.title || reservationPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${reservationPageMeta.seo?.title || reservationPageMeta.title} - Casa de los Sabores`}>
     <div>
-        <ReservationForm title={reservationPageMeta.title} client:load />
+        <ReservationForm title={reservationPageMeta.title} lang={lang} client:load />
     </div>
 </Layout>

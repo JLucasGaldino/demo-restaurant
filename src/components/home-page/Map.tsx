@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React, { useState, useRef, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import classnames from 'classnames';

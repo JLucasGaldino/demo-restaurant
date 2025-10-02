@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React, { useState, useMemo } from 'react';
 import { A11y } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -17,17 +18,28 @@ interface Props {
     description: PropRichTextDataParsed;
     items: FoodItemEntryMetaItem[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
-
-const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 const HomeSpecials: React.FC<Props> = ({
     title,
     description,
     items,
     bcmsConfig,
+    lang,
 }) => {
-    const [activeDay, setActiveDay] = useState('SUN');
+    const t = useTranslations(lang as 'en' | 'es');
+    const days = [
+        t('days.sun'),
+        t('days.mon'),
+        t('days.tue'),
+        t('days.wed'),
+        t('days.thu'),
+        t('days.fri'),
+        t('days.sat'),
+    ];
+
+    const [activeDay, setActiveDay] = useState(days[0]);
 
     const filteredItems = useMemo(() => {
         return items.filter((item) => {
@@ -115,7 +127,7 @@ const HomeSpecials: React.FC<Props> = ({
                     </div>
                 ) : (
                     <div className="text-sm leading-none tracking-[-0.41px] text-center text-appGray-700 my-20">
-                        No specials for this day
+                        {t('spec.none')}
                     </div>
                 )}
             </div>

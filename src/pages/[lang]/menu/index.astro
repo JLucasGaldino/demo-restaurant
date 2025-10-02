@@ -22,19 +22,19 @@ if (!menuPageEntries) {
     return notFound();
 }
 
-const menuPageMeta = menuPageEntries.meta.en as MenuPageEntryMetaItem;
+const menuPageMeta = menuPageEntries.meta[lang] as MenuPageEntryMetaItem;
 
 const mealTypes = (
     (await bcmsPrivate.entry.getAll('meal-type')) as MealTypeEntry[]
-).map((e) => e.meta.en as MealTypeEntryMetaItem);
+).map((e) => e.meta[lang] as MealTypeEntryMetaItem);
 const foodItems = (
     (await bcmsPrivate.entry.getAll('food-item')) as FoodItemEntry[]
-).map((e) => e.meta.en as FoodItemEntryMetaItem);
+).map((e) => e.meta[lang] as FoodItemEntryMetaItem);
 
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout lang={lang} title={`${menuPageMeta.seo?.title || menuPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${menuPageMeta.seo?.title || menuPageMeta.title} - Casa de los Sabores`}>
     <div>
         <MenuMeals
             meta={menuPageMeta}

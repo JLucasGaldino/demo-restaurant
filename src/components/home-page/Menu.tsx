@@ -39,7 +39,7 @@ const HomeMenu: React.FC<Props> = ({
             {meals.map((meal, index) => (
                 <a
                     key={index}
-                    href={`/menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
+                    href={`/${lang}/menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
                     className="flex relative"
                 >
                     {meal.meta[lang] && (

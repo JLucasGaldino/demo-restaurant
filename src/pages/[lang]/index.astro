@@ -38,7 +38,7 @@ const bcmsConfig = bcmsPublic.getConfig();
 ---
 
 <Layout lang={lang}
-    title={`${homePageMeta.seo?.title || homePageMeta.title} - Tastyyy`}
+    title={`${homePageMeta.seo?.title || homePageMeta.title} - Casa de los Sabores`}
 >
     <div>
         <HomeHero
@@ -77,9 +77,10 @@ const bcmsConfig = bcmsPublic.getConfig();
             <HomeSpecials
                 title={homePageMeta.specials_title}
                 description={homePageMeta.specials_description}
-                items={foodItems.map((e) => e.meta.en as FoodItemEntryMetaItem)}
+                items={foodItems.map((e) => e.meta[lang] as FoodItemEntryMetaItem)}
                 client:load
                 bcmsConfig={bcmsConfig}
+                lang={lang}
             />
             <HomeEvents
                 title={homePageMeta.events_title}

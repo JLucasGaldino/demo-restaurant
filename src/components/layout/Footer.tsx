@@ -56,11 +56,11 @@ const Footer: React.FC<FooterProps> = ({lang}) => {
             items: [
                 {
                     label: t('con.tnc'),
-                    href: '/terms',
+                    href: '/',
                 },
                 {
                     label: t('con.pp'),
-                    href: '/legal',
+                    href: '/',
                 },
             ],
         },

@@ -24,12 +24,12 @@ if (!eventsPageEntry) {
     return notFound();
 }
 
-const eventsPageMeta = eventsPageEntry.meta.en as EventsPageEntryMetaItem;
+const eventsPageMeta = eventsPageEntry.meta[lang] as EventsPageEntryMetaItem;
 
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout lang={lang} title={`${eventsPageMeta.seo?.title || eventsPageMeta.title} - Tastyyy`}>
+<Layout lang={lang} title={`${eventsPageMeta.seo?.title || eventsPageMeta.title} - Casa de los Sabores`}>
     <div>
         <section class="pt-[108px] pb-10 overflow-hidden md:pb-20 lg:pt-[218px] lg:pb-[120px]">
             <div class="container max-w-[1198px]">

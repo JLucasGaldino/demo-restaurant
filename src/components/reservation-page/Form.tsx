@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React, { useState } from 'react';
 import FormText from './Text';
 import classNames from 'classnames';
@@ -6,6 +7,7 @@ import ArchWithStar from '../ArchWithStar';
 
 interface Props {
     title: string;
+    lang: string;
 }
 
 interface ReservationForm {
@@ -18,7 +20,8 @@ interface ReservationForm {
     acceptTerms: boolean;
 }
 
-const ReservationForm: React.FC<Props> = ({ title }) => {
+const ReservationForm: React.FC<Props> = ({ title, lang }) => {
+    const t = useTranslations(lang as 'en' | 'es');
     const [form, setForm] = useState<ReservationForm>({
         name: '',
         guestsCount: '',
@@ -101,8 +104,8 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                     >
                         <FormText
                             value={form.name}
-                            label="Name"
-                            placeholder="Enter your full name or nickname..."
+                            label={t('form.name')}
+                            placeholder={t('form.nameholder')}
                             error={formErrors.name}
                             className="col-span-2"
                             onChange={(value) =>
@@ -116,7 +119,7 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                                 handleUpdateForm('date', value)
                             }
                             type="date"
-                            label="Date"
+                            label={t('form.date')}
                             placeholder="DD/MM/YYYY"
                         />
                         <FormText
@@ -126,8 +129,8 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                                 handleUpdateForm('time', value)
                             }
                             type="time"
-                            label="Time"
-                            placeholder="Enter time"
+                            label={t('form.time')}
+                            placeholder={t('form.timeholder')}
                         />
                         <FormText
                             error={formErrors.guestsCount}
@@ -135,8 +138,8 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                             onChange={(value) =>
                                 handleUpdateForm('guestsCount', value)
                             }
-                            label="Number of guests"
-                            placeholder="Number of guests"
+                            label={t('form.guests')}
+                            placeholder={t('form.guests')}
                         />
                         <FormText
                             error={formErrors.email}
@@ -144,8 +147,8 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                             onChange={(value) =>
                                 handleUpdateForm('email', value)
                             }
-                            label="Email / Phone"
-                            placeholder="Email or phone..."
+                            label={t('form.contact')}
+                            placeholder={t('form.contactholder')}
                         />
                         <FormText
                             error={formErrors.notes}
@@ -154,8 +157,8 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                                 handleUpdateForm('notes', value)
                             }
                             type="textarea"
-                            label="Notes"
-                            placeholder="If you have special requirements..."
+                            label={t('form.notes')}
+                            placeholder={t('form.notesholder')}
                             className="col-span-2"
                         />
                         <label className="flex items-start col-span-2 cursor-pointer">
@@ -196,13 +199,9 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                                 )}
                             </div>
                             <div className="text-xs leading-[1.2] tracking-[-0.41px] text-[#665E5E] lg:text-base lg:leading-[1.2]">
-                                By submitting this form, you confirm you have
-                                read and understood how Tastyyy processes your
-                                personal data for the purpose of making a
-                                reservation and in accordance with the terms of
-                                the
+                                {t('form.disclaimer')}
                                 <a href="/" className="underline">
-                                    Privacy Notice
+                                {t('form.privacy')}
                                 </a>
                                 .
                             </div>
@@ -213,7 +212,7 @@ const ReservationForm: React.FC<Props> = ({ title }) => {
                             className="justify-center w-full col-span-2"
                             onClick={() => handleFormSubmit()}
                         >
-                            <span>Submit your reservation</span>
+                            <span>{t('form.submit')}</span>
                         </Btn>
                     </form>
                 </div>

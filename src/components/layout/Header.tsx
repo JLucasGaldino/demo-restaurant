@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({lang}) => {
                     >
                         <div
                             dangerouslySetInnerHTML={{ __html: Logo }}
-                            className={classNames('w-[60px] md:w-[101px]', {
+                            className={classNames('w-[110px] md:w-[180px]', {
                                 'max-md:grayscale-0 max-md:brightness-[0.2] max-md:invert-0':
                                     showMobileMenu,
                             })}
