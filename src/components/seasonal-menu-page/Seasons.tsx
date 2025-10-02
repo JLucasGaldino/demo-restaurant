@@ -78,7 +78,7 @@ export const Seasons: React.FC<Props> = ({
                         </div>
                         <ContentManager
                             items={activeSeasonDescription}
-                            className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-700 lg:text-base lg:leading-[1.3]"
+                            className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-700 lg:text-base lg:leading-[1.3] items-center justify-center text-center"
                         />
                     </div>
                 </div>

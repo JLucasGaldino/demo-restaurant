@@ -41,7 +41,7 @@ const HomeSeasons: React.FC<Props> = ({
                 {seasons.map((meal, index) => (
                     <a
                         key={index}
-                        href={`/seasonal-menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
+                        href={`/${lang}/seasonal-menu?s=${meal.meta[lang]?.title.toLowerCase()}`}
                         className="flex relative"
                     >
                         {meal.meta[lang] && (

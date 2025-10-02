@@ -15,9 +15,10 @@ interface Props {
     meals: MealTypeEntryMetaItem[];
     foodItems: FoodItemEntryMetaItem[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
 
-const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig }) => {
+const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig, lang }) => {
     const [activeMealType, setActiveMealType] = useState('breakfast');
 
     const activeMealTypeDescription = useMemo(() => {
@@ -32,7 +33,7 @@ const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig }) => {
         return (
             foodItems.filter((item) => {
                 return item.type.find(
-                    (e) => e.meta.en?.title.toLowerCase() === activeMealType,
+                    (e) => e.meta[lang]?.title.toLowerCase() === activeMealType,
                 );
             }) || []
         );
@@ -76,7 +77,7 @@ const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig }) => {
                         </div>
                         <ContentManager
                             items={activeMealTypeDescription}
-                            className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-700 lg:text-base lg:leading-[1.3]"
+                            className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-700 lg:text-base lg:leading-[1.3] items-center justify-center text-center"
                         />
                     </div>
                 </div>

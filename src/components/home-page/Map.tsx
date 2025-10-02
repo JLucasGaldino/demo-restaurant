@@ -10,15 +10,17 @@ import Btn from '../Btn';
 interface Props {
     map: PropMediaDataParsed;
     bcmConfig: ClientConfig;
+    lang: string;
 }
 
-const HomeMap: React.FC<Props> = ({ map, bcmConfig }) => {
+const HomeMap: React.FC<Props> = ({ map, bcmConfig, lang }) => {
     const [showMap, setShowMap] = useState<boolean>(false);
 
     const mapRef = useRef<HTMLDivElement | null>(null);
 
     const transitionRef = useRef(null);
 
+    const t = useTranslations(lang as 'en' | 'es');
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -48,7 +50,7 @@ const HomeMap: React.FC<Props> = ({ map, bcmConfig }) => {
                 )}
                 onClick={() => setShowMap((prev) => !prev)}
             >
-                Open maps
+            {t('btn.maps')}
             </button>
             <Transition
                 appear={true}

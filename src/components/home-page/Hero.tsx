@@ -20,6 +20,7 @@ interface Props {
     map: PropMediaDataParsed;
     description: InlineTextWithImageGroup[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
 
 const HomeHero: React.FC<Props> = ({
@@ -37,7 +38,7 @@ const HomeHero: React.FC<Props> = ({
             <div className="container">
                 <div className="relative mb-[14px] lg:mb-12">
                     <svg
-                        viewBox="0 0 1376 986"
+                        viewBox="0 0 1376 700"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -72,7 +73,7 @@ const HomeHero: React.FC<Props> = ({
                             <div className="text-lg leading-none mb-1.5">
                                 {address}
                             </div>
-                            <HomeMap map={map} bcmConfig={bcmsConfig} />
+                            <HomeMap map={map} lang={lang} bcmConfig={bcmsConfig} />
                         </div>
                         <div className="h-px flex-1 bg-[#D9D9D9] mx-4 max-xl:hidden" />
                         <div className="bg-white px-4 py-[14px] rounded-[128px] max-w-max lg:px-20 lg:py-14">
@@ -106,7 +107,7 @@ const HomeHero: React.FC<Props> = ({
                         <div className="text-sm leading-none mb-1.5 lg:text-lg lg:leading-none">
                             {address}
                         </div>
-                        <HomeMap map={map} bcmConfig={bcmsConfig} />
+                        <HomeMap map={map} lang={lang} bcmConfig={bcmsConfig} />
                     </div>
                     <ContentManager
                         items={open_time.nodes}
@@ -147,7 +148,7 @@ const HomeHero: React.FC<Props> = ({
                         );
                     })}
                 </div>
-                <Btn to="/about-us" className="uppercase max-w-max mx-auto">
+                <Btn to="/" className="uppercase max-w-max mx-auto">
                     <span>
                         {t('hom.learn')} <span className="sr-only">about us</span>
                     </span>
