@@ -1,10 +1,16 @@
 ---
-import type { AboutPageEntry, AboutPageEntryMetaItem } from "../../../bcms/types/ts";
-import AboutHero from "../../components/about-page/Hero";
-import AboutTextImage from "../../components/about-page/TextImage";
-import Layout from "../../layouts/Layout.astro";
-import { bcmsPrivate } from '../../bcms-private';
-import { bcmsPublic } from '../../bcms-public';
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
+import type { AboutPageEntry, AboutPageEntryMetaItem } from "../../../../bcms/types/ts";
+import AboutHero from "../../../components/about-page/Hero";
+import AboutTextImage from "../../../components/about-page/TextImage";
+import Layout from "../../../layouts/Layout.astro";
+import { bcmsPrivate } from '../../../bcms-private';
+import { bcmsPublic } from '../../../bcms-public';
 
 const aboutPageEntry = (await bcmsPrivate.entry.getBySlug(
     'about-us',
@@ -20,7 +26,7 @@ const aboutPageMeta = aboutPageEntry.meta.en as AboutPageEntryMetaItem;
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout title={`${aboutPageMeta.seo?.title || aboutPageMeta.title} - Casa de los Sabores`}>
+<Layout title={`${aboutPageMeta.seo?.title || aboutPageMeta.title} - Casa de los Sabores`} lang="en">
     <div>
         <AboutHero
             title={aboutPageMeta.hero_title}

@@ -47,6 +47,7 @@ export const ui = {
     "form.privacy" : "Aviso de Privacidad",
     "form.submit" : "Enviar su reserva",
     "spec.none" : "Sin especiales este día",
+    "menu.nofound" : "Ningún elemento encuentrado",
   },
   en: {
     'nav.home': 'Home',
@@ -86,6 +87,7 @@ export const ui = {
     "form.privacy" : "Privacy Notice",
     "form.submit" : "Submit your reservation",
     "spec.none" : "No specials for this day",
+    "menu.nofound" : "No menu item found",
   }
 } as const;
 
