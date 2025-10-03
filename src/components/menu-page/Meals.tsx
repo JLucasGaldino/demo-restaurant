@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import React, { useMemo, useState } from 'react';
 import type { ClientConfig } from '@thebcms/client';
 import { BCMSImage } from '@thebcms/components-react';
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig, lang }) => {
+    const t = useTranslations(lang as 'en' | 'es');
     const [activeMealType, setActiveMealType] = useState('breakfast');
 
     const activeMealTypeDescription = useMemo(() => {
@@ -112,7 +114,7 @@ const MenuMeals: React.FC<Props> = ({ meta, meals, foodItems, bcmsConfig, lang }
                 </div>
             ) : (
                 <div className="text-sm leading-none tracking-[-0.41px] text-center text-appGray-700 my-20">
-                    No menu item found
+                    {t('menu.nofound')}
                 </div>
             )}
         </section>

@@ -14,12 +14,12 @@ import { bcmsPrivate } from '../../../bcms-private';
 import { bcmsPublic } from '../../../bcms-public';
 
 const seasons = ((await bcmsPrivate.entry.getAll('season')) as SeasonEntry[]).map(
-    (e) => e.meta.en as SeasonEntryMetaItem,
+    (e) => e.meta[lang] as SeasonEntryMetaItem,
 );
 
 const foodItems = (
     (await bcmsPrivate.entry.getAll('food-item')) as FoodItemEntry[]
-).map((e) => e.meta.en as FoodItemEntryMetaItem);
+).map((e) => e.meta[lang] as FoodItemEntryMetaItem);
 ---
 
 <Layout lang={lang} title={`Seasonal Menu - Casa de los Sabores`}>
@@ -29,6 +29,7 @@ const foodItems = (
             foodItems={foodItems}
             client:load
             bcmsConfig={bcmsPublic.getConfig()}
+            lang={lang}
         />
     </div>
 </Layout>

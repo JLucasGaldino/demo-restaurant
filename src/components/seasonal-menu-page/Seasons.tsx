@@ -1,3 +1,4 @@
+import { useTranslations } from '../../utils/i18n';
 import type { ClientConfig } from '@thebcms/client';
 import { BCMSImage } from '@thebcms/components-react';
 import React, { useMemo, useState } from 'react';
@@ -13,15 +14,18 @@ interface Props {
     seasons: SeasonEntryMetaItem[];
     foodItems: FoodItemEntryMetaItem[];
     bcmsConfig: ClientConfig;
+    lang: string;
 }
 
 export const Seasons: React.FC<Props> = ({
     seasons,
     foodItems,
     bcmsConfig,
+    lang,
 }) => {
     const [activeSeason, setActiveSeason] = useState('spring');
 
+    const t = useTranslations(lang as 'en' | 'es');
     const activeSeasonDescription = useMemo(() => {
         return (
             seasons.find(
@@ -34,7 +38,7 @@ export const Seasons: React.FC<Props> = ({
         return (
             foodItems.filter((item) => {
                 return item.season.find(
-                    (e) => e.meta.en?.title.toLowerCase() === activeSeason,
+                    (e) => e.meta[lang]?.title.toLowerCase() === activeSeason,
                 );
             }) || []
         );
@@ -46,7 +50,7 @@ export const Seasons: React.FC<Props> = ({
                 <ArchWithStar />
                 <div className="relative px-4 max-w-[400px] mx-auto lg:max-w-[745px] xl:px-0">
                     <h1 className="text-xl leading-none font-Gloock uppercase text-center mb-8 lg:text-5xl lg:leading-none">
-                        Menu
+                    {t('nav.menu')}
                     </h1>
                     <div className="mb-10 lg:mb-20">
                         <div className="grid grid-cols-2 gap-x-3 gap-y-4 mb-8 md:flex md:items-center md:justify-center lg:gap-4 lg:mb-10">
@@ -99,7 +103,7 @@ export const Seasons: React.FC<Props> = ({
                                     className="text-sm leading-[1.3] tracking-[-0.41px] uppercase text-appGray-100 max-w-[480px] mb-4 lg:text-base lg:leading-[1.3] lg:mb-6"
                                 />
                                 <div className="px-6 py-[13px] flex max-w-max bg-[#9BA58F] rounded-[32px] text-sm leading-none text-white tracking-[-0.41px] lg:px-[18px] lg:py-3 lg:text-sm lg:leading-none">
-                                    ${item.price}
+                                    €{item.price}
                                 </div>
                             </div>
                             <BCMSImage
@@ -113,7 +117,7 @@ export const Seasons: React.FC<Props> = ({
                 </div>
             ) : (
                 <div className="text-sm leading-none tracking-[-0.41px] text-center text-appGray-700 my-20">
-                    No menu item found
+                    {t('menu.nofound')}
                 </div>
             )}
         </section>
